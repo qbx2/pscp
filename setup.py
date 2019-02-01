@@ -5,7 +5,7 @@ from setuptools import find_packages
 
 setup(
     name='pscp',
-    version='0.0.0',
+    version='0.0.1',
     description='Per-session checkpoint using git-stash-create',
     author='Sunyeop Lee',
     author_email='sunyeop97@gmail.com',
