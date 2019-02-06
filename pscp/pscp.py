@@ -33,6 +33,11 @@ class CalledProcessError(Exception):
 
 def _run_git(*git_args):
     args = ('git', *git_args)
+
+    if not all(isinstance(arg, str) for arg in args):
+        raise TypeError('Expected all to be str, got {}'.format(
+            tuple(map(type, git_args))))
+
     p = subprocess.run(args, capture_output=True)
 
     if p.returncode:

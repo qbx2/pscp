@@ -28,6 +28,13 @@ class TestPSCP(TestCase):
 
         self.assertEqual(output, 'unknown hash 123\uFFFD\uFFFD\uFFFD')
 
+    def test_run_git_non_str_raise(self):
+        with self.assertRaises(TypeError):
+            ppscp._run_git('test', None, '123')
+
+        with self.assertRaises(TypeError):
+            ppscp._run_git('test', b'test', '123')
+
     @patch('subprocess.run')
     def test_run_git_raise(self, run):
         run.return_value.stdout = b''
