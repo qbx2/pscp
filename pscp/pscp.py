@@ -108,9 +108,37 @@ def gc(prune='now'):
     return _run_git('gc', '--prune={}'.format(prune))
 
 
-def push(refspec=None, refmap=None, repository='origin'):
-    raise NotImplementedError
+def push(refspec=None, repository='origin'):
+    if refspec is None:
+        refspec = 'refs/{}/*'.format(REF_NAMESPACE)
+
+    if not isinstance(refspec, str):
+        raise TypeError('Expected str or None, not {}'.format(type(refspec)))
+
+    if not isinstance(repository, str):
+        raise TypeError('Expected str or None, not {}'.format(
+            type(repository)))
+
+    _run_git('push', repository, refspec)
 
 
 def fetch(refspec=None, refmap=None, repository='origin'):
-    raise NotImplementedError
+    git_fetch_args = [repository]
+
+    if refmap is None:
+        refmap = ':'.join(['refs/{}/*'.format(REF_NAMESPACE)] * 2)
+    elif not isinstance(refmap, str):
+        raise TypeError('Expected str or None, not {}'.format(type(refmap)))
+
+    if not isinstance(repository, str):
+        raise TypeError('Expected str or None, not {}'.format(
+            type(repository)))
+
+    if refspec is None:
+        git_fetch_args.append(refmap)
+    elif isinstance(refspec, str):
+        git_fetch_args += [refspec, '--refmap', refmap]
+    else:
+        raise TypeError('Expected str or None, not {}'.format(type(refspec)))
+
+    _run_git('fetch', *git_fetch_args)

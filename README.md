@@ -43,7 +43,7 @@ Delete pscp reference. Call `gc()` if you want.
 
 Run `git gc --prune=<prune>`.
 
-### `pscp.push(refspec=None, refmap=None, repository='origin')`
+### `pscp.push(refspec=None, repository='origin')`
 
 Push checkpoint to the remote repository.
 

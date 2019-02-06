@@ -173,3 +173,77 @@ class TestPSCP(TestCase):
 
         with self.assertRaises(TypeError):
             pscp.gc(None)
+
+    @patch('pscp.pscp._run_git')
+    def test_push(self, run_git):
+        pscp.push()
+
+        run_git.assert_called_once_with('push', 'origin', 'refs/pscp/*')
+
+    @patch('pscp.pscp._run_git')
+    def test_push_refspec(self, run_git):
+        pscp.push('refs/some_namespace/123')
+
+        run_git.assert_called_once_with(
+            'push', 'origin', 'refs/some_namespace/123')
+
+    @patch('pscp.pscp._run_git')
+    def test_push_repo(self, run_git):
+        pscp.push(repository='another repo')
+
+        run_git.assert_called_once_with(
+            'push', 'another repo', 'refs/pscp/*')
+
+    def test_push_invalid_raise(self):
+        with self.assertRaises(TypeError):
+            pscp.push(refspec=b'refs/pscp/123')
+
+        with self.assertRaises(TypeError):
+            pscp.push(repository=b'origin')
+
+    @patch('pscp.pscp._run_git')
+    def test_fetch(self, run_git):
+        pscp.fetch()
+
+        run_git.assert_called_once_with(
+            'fetch', 'origin', 'refs/pscp/*:refs/pscp/*')
+
+    @patch('pscp.pscp._run_git')
+    def test_fetch_refspec(self, run_git):
+        pscp.fetch('some refspec')
+
+        run_git.assert_called_once_with(
+            'fetch', 'origin', 'some refspec',
+            '--refmap', 'refs/pscp/*:refs/pscp/*')
+
+    @patch('pscp.pscp._run_git')
+    def test_fetch_refmap(self, run_git):
+        pscp.fetch(refmap='another refmap')
+
+        run_git.assert_called_once_with(
+            'fetch', 'origin', 'another refmap')
+
+    @patch('pscp.pscp._run_git')
+    def test_fetch_refmap_refspec(self, run_git):
+        pscp.fetch('another refspec', refmap='another refmap')
+
+        run_git.assert_called_once_with(
+            'fetch', 'origin', 'another refspec',
+            '--refmap', 'another refmap')
+
+    @patch('pscp.pscp._run_git')
+    def test_fetch_repo(self, run_git):
+        pscp.fetch(repository='another repo')
+
+        run_git.assert_called_once_with(
+            'fetch', 'another repo', 'refs/pscp/*:refs/pscp/*')
+
+    def test_fetch_invalid_raise(self):
+        with self.assertRaises(TypeError):
+            pscp.push(refspec=b'refs/pscp/123')
+
+        with self.assertRaises(TypeError):
+            pscp.push(refmap=b'refs/pscp/123')
+
+        with self.assertRaises(TypeError):
+            pscp.push(repository=b'origin')
