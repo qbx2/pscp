@@ -1,10 +1,14 @@
+[![PyPI](https://img.shields.io/pypi/v/pscp.svg?style=flat)](https://pypi.org/project/pscp/)
+![PyPI-License](https://img.shields.io/pypi/l/pscp.svg?style=flat)
+![PyPI-Python-Versions](https://img.shields.io/pypi/pyversions/pscp.svg?style=flat)
+
 # PSCP: Per-session checkpoint
 
 ### Author: Sunyeop Lee (sunyeop97 at gmail.com)
 
 ### Requirements
 
-* python 3.3+
+* python 3.4+
 * git
 
 Use .gitignore to avoid stashing unnecessary files.
