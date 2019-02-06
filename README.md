@@ -35,9 +35,13 @@ Create reference named `refs/checkpoints/{timestamp_ms}`. It could be used to av
 
 ### `pscp.delete(refspec)`
 
-Delete pscp reference. Run `git gc --prune=now` for gc. Otherwise, objects might be still alive.
+Delete pscp reference. Call `gc()` if you want.
 
 * `refspec`: Target refspec to be deleted.
+
+### `pscp.gc(prune='now')`
+
+Run `git gc --prune=<prune>`.
 
 ### `pscp.push(refspec=None, refmap=None, repository='origin')`
 
