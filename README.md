@@ -1,3 +1,4 @@
+![TravisCI](https://img.shields.io/travis/qbx2/pscp/master.svg?style=flat)
 [![PyPI](https://img.shields.io/pypi/v/pscp.svg?style=flat)](https://pypi.org/project/pscp/)
 ![PyPI-License](https://img.shields.io/pypi/l/pscp.svg?style=flat)
 ![PyPI-Python-Versions](https://img.shields.io/pypi/pyversions/pscp.svg?style=flat)
@@ -43,11 +44,11 @@ Delete pscp reference.
 
 Push checkpoint to the remote repository.
 
-* `refspec `: If `None`, all checkpoints are pushed.
+* `refspec`: If `None`, all checkpoints are pushed.
 
 ### `pscp.fetch(refspec=None, refmap=None, repository='origin')`
 
-* `refspec `: If `None`, all checkpoints are fetched.
+* `refspec`: If `None`, all checkpoints are fetched.
 * `refmap`: If `None`, `refs/checkpoints/*:refs/checkpoints/*` is used.
 
 ## How does it work?
