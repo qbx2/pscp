@@ -11,5 +11,6 @@ setup(
     author_email='sunyeop97@gmail.com',
     url='https://github.com/qbx2/pscp',
     license='MIT',
+    test_suite='tests',
     packages=find_packages(),
 )
