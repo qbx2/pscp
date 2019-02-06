@@ -27,7 +27,7 @@ Use `.gitignore` to avoid stashing unnecessary files.
 
 Create per-session checkpoint.
 
-* `return_head_on_nothing`: When there are nothing changed compared to HEAD, return hash of HEAD if True, otherwise, return `None`.
+* `return_head_on_nothing`: If True, return hash of `HEAD` when there are nothing changed compared to `HEAD`, otherwise, return `None`.
 * `return_format`
 	* `abbrev`, `short`: Return abbreviated hash.
 	* `long`: Return just unabbreviated hash.
@@ -36,11 +36,11 @@ Create per-session checkpoint.
 
 ### `pscp.link(hash)`
 
-Create reference named `refs/checkpoints/{timestamp_ms}`. It could be used to avoid pruning on garbage collection.
+Create reference named `refs/pscp/{timestamp_ms}`. It could be used to avoid pruning on garbage collection.
 
 ### `pscp.delete(refspec)`
 
-Delete pscp reference. Call `gc()` if you want.
+Delete pscp reference. Call `pscp.gc()` if you want.
 
 * `refspec`: Target refspec to be deleted. `timestamp_ms` is also allowed.
 
@@ -57,7 +57,7 @@ Push checkpoint to the remote repository.
 ### `pscp.fetch(refspec=None, refmap=None, repository='origin')`
 
 * `refspec`: If `None`, all checkpoints are fetched.
-* `refmap`: If `None`, `refs/checkpoints/*:refs/checkpoints/*` is used.
+* `refmap`: If `None`, `refs/pscp/*:refs/pscp/*` is used.
 
 ## How does it work?
 
