@@ -11,7 +11,13 @@
 * python 3.5+
 * git
 
-Use .gitignore to avoid stashing unnecessary files.
+### Install PSCP
+
+`pip install pscp`
+
+### Ignoring files
+
+Use `.gitignore` to avoid stashing unnecessary files.
 
 ### Command Line Tool (TODO)
 
