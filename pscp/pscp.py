@@ -80,3 +80,19 @@ def _link(h):
 
 
 link = _link
+
+
+def delete(refspec):
+    raise NotImplementedError
+
+
+def gc(prune='now'):
+    raise NotImplementedError
+
+
+def push(refspec=None, refmap=None, repository='origin'):
+    raise NotImplementedError
+
+
+def fetch(refspec=None, refmap=None, repository='origin'):
+    raise NotImplementedError

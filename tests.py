@@ -1,7 +1,8 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-import pscp.pscp as pscp
+import pscp
+import pscp.pscp as ppscp
 
 
 class TestPSCP(TestCase):
@@ -11,7 +12,7 @@ class TestPSCP(TestCase):
         run.return_value.stderr = b''
         run.return_value.returncode = 0
 
-        output = pscp._run_git('stash', 'create')
+        output = ppscp._run_git('stash', 'create')
 
         self.assertEqual(output, 'test hash 123')
         run.assert_called_once_with(
@@ -23,7 +24,7 @@ class TestPSCP(TestCase):
         run.return_value.stderr = b''
         run.return_value.returncode = 0
 
-        output = pscp._run_git('test')
+        output = ppscp._run_git('test')
 
         self.assertEqual(output, 'unknown hash 123\uFFFD\uFFFD\uFFFD')
 
@@ -34,7 +35,7 @@ class TestPSCP(TestCase):
         run.return_value.returncode = 1
 
         with self.assertRaises(pscp.CalledProcessError) as cm:
-            pscp._run_git('test')
+            ppscp._run_git('test')
 
         e = cm.exception
 
