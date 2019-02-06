@@ -12,5 +12,6 @@ setup(
     url='https://github.com/qbx2/pscp',
     license='MIT',
     test_suite='tests',
+    python_requires='>=3.5',
     packages=find_packages(),
 )

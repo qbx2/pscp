@@ -8,7 +8,7 @@
 
 ### Requirements
 
-* python 3.4+
+* python 3.5+
 * git
 
 Use .gitignore to avoid stashing unnecessary files.
