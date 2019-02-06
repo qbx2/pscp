@@ -31,14 +31,13 @@ Create per-session checkpoint.
 
 ### `pscp.link(hash)`
 
-Create reference named `refs/checkpoints/{timestamp}`. It could be used to avoid pruning on garbage collection.
+Create reference named `refs/checkpoints/{timestamp_ms}`. It could be used to avoid pruning on garbage collection.
 
-### `pscp.delete(refspec, run_gc=False)`
+### `pscp.delete(refspec)`
 
-Delete pscp reference.
+Delete pscp reference. Run `git gc --prune=now` for gc. Otherwise, objects might be still alive.
 
 * `refspec`: Target refspec to be deleted.
-* `run_gc`: If true, run `git gc --prune=now`. Otherwise, objects might be still alive.
 
 ### `pscp.push(refspec=None, refmap=None, repository='origin')`
 
