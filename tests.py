@@ -160,3 +160,16 @@ class TestPSCP(TestCase):
 
         with self.assertRaises(ValueError):
             pscp.delete('refs/non-pscp-namespace/123')
+
+    @patch('pscp.pscp._run_git')
+    def test_gc(self, run_git):
+        pscp.gc('test prune')
+
+        run_git.assert_called_once_with('gc', '--prune=test prune')
+
+    def test_gc_invalid_prune_raise(self):
+        with self.assertRaises(TypeError):
+            pscp.gc(b'now')
+
+        with self.assertRaises(TypeError):
+            pscp.gc(None)

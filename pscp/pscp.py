@@ -102,7 +102,10 @@ def delete(refspec):
 
 
 def gc(prune='now'):
-    raise NotImplementedError
+    if not isinstance(prune, str):
+        raise TypeError('Expected str, not {}'.format(type(prune)))
+
+    return _run_git('gc', '--prune={}'.format(prune))
 
 
 def push(refspec=None, refmap=None, repository='origin'):
