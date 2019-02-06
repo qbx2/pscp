@@ -4,9 +4,14 @@
 
 ### Requirements
 
-* python 2.7+
 * python 3.3+
 * git
+
+Use .gitignore to avoid stashing unnecessary files.
+
+### Command Line Tool (TODO)
+
+`python -m pscp`
 
 ### `pscp.create(return_head_on_nothing=True, return_format='abbrev', link=True)`
 
