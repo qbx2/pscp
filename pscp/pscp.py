@@ -70,7 +70,7 @@ def create(return_head_on_nothing=True, return_format='abbrev', link=True):
 
 def _link(h):
     if not isinstance(h, str):
-        raise TypeError('expected str, not {}'.format(type(h)))
+        raise TypeError('Expected str, not {}'.format(type(h)))
 
     timestamp_ms = int(time.time() * 1000)
     ref = 'refs/{}/{}'.format(REF_NAMESPACE, timestamp_ms)
@@ -83,7 +83,17 @@ link = _link
 
 
 def delete(refspec):
-    raise NotImplementedError
+    if not isinstance(refspec, str):
+        raise TypeError('Expected str, not {}'.format(type(refspec)))
+
+    prefix = 'refs/{}/'.format(REF_NAMESPACE)
+
+    if '/' not in refspec:
+        refspec = prefix + refspec
+    elif not refspec.startswith(prefix):
+        raise ValueError('Expected refspec to start with {}'.format(prefix))
+
+    _run_git('update-ref', '-d', refspec)
 
 
 def gc(prune='now'):

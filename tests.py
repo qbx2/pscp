@@ -131,3 +131,25 @@ class TestPSCP(TestCase):
 
         with self.assertRaises(TypeError):
             pscp.link(None)
+
+    @patch('pscp.pscp._run_git')
+    def test_delete(self, run_git):
+        pscp.delete('refs/pscp/123')
+
+        run_git.assert_called_once_with('update-ref', '-d', 'refs/pscp/123')
+
+        run_git.reset_mock()
+
+        pscp.delete('123')
+
+        run_git.assert_called_once_with('update-ref', '-d', 'refs/pscp/123')
+
+    def test_delete_invalid_refspec_raise(self):
+        with self.assertRaises(TypeError):
+            pscp.delete(b'refs/pscp/123')
+
+        with self.assertRaises(TypeError):
+            pscp.delete(None)
+
+        with self.assertRaises(ValueError):
+            pscp.delete('refs/non-pscp-namespace/123')

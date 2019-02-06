@@ -37,7 +37,7 @@ Create reference named `refs/checkpoints/{timestamp_ms}`. It could be used to av
 
 Delete pscp reference. Call `gc()` if you want.
 
-* `refspec`: Target refspec to be deleted.
+* `refspec`: Target refspec to be deleted. `timestamp_ms` is also allowed.
 
 ### `pscp.gc(prune='now')`
 
