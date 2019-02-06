@@ -1,7 +1,6 @@
 [![TravisCI](https://img.shields.io/travis/qbx2/pscp/master.svg?style=flat)](https://travis-ci.org/qbx2/pscp/)
 [![PyPI](https://img.shields.io/pypi/v/pscp.svg?style=flat)](https://pypi.org/project/pscp)
 ![PyPI-License](https://img.shields.io/pypi/l/pscp.svg?style=flat)
-![PyPI-Python-Versions](https://img.shields.io/pypi/pyversions/pscp.svg?style=flat)
 
 # PSCP: Per-session checkpoint
 
