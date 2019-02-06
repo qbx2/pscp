@@ -113,3 +113,20 @@ class TestPSCP(TestCase):
         link.not_assert_called()
         self.assertEqual(output1, None)
         self.assertEqual(output2, None)
+
+    @patch('time.time')
+    @patch('pscp.pscp._run_git')
+    def test_link(self, run_git, time):
+        time.return_value = 1234.56789
+
+        output = pscp.link('test hash')
+
+        self.assertEqual(output, 'refs/pscp/1234567')
+        run_git.assert_called_once_with('update-ref', output, 'test hash')
+
+    def test_link_invalid_hash_raise(self):
+        with self.assertRaises(TypeError):
+            pscp.link(b'test hash')
+
+        with self.assertRaises(TypeError):
+            pscp.link(None)

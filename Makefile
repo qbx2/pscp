@@ -11,3 +11,6 @@ clean:
 
 test:
 	$(PYTHON) setup.py test
+
+pytest:
+	pytest tests.py

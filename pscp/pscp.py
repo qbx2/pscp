@@ -1,5 +1,8 @@
 # Author: Sunyeop Lee <sunyeop97@gmail.com>
 import subprocess
+import time
+
+REF_NAMESPACE = 'pscp'
 
 
 class CalledProcessError(Exception):
@@ -66,7 +69,14 @@ def create(return_head_on_nothing=True, return_format='abbrev', link=True):
 
 
 def _link(h):
-    raise NotImplementedError
+    if not isinstance(h, str):
+        raise TypeError('expected str, not {}'.format(type(h)))
+
+    timestamp_ms = int(time.time() * 1000)
+    ref = 'refs/{}/{}'.format(REF_NAMESPACE, timestamp_ms)
+    _run_git('update-ref', ref, h)
+
+    return ref
 
 
 link = _link
