@@ -152,12 +152,25 @@ class TestPSCP(TestCase):
         self.assertEqual(output, 'refs/pscp/1234567')
         run_git.assert_called_once_with('update-ref', output, 'test hash')
 
+    @patch('pscp.pscp._run_git')
+    def test_link_refspec(self, run_git):
+        output = pscp.link('test hash', 'refs/pscp/test refspec')
+
+        self.assertEqual(output, 'refs/pscp/test refspec')
+        run_git.assert_called_once_with('update-ref', output, 'test hash')
+
     def test_link_invalid_hash_raise(self):
         with self.assertRaises(TypeError):
             pscp.link(b'test hash')
 
         with self.assertRaises(TypeError):
             pscp.link(None)
+
+        with self.assertRaises(TypeError):
+            pscp.link('test hash', b'test refspec')
+
+        with self.assertRaises(ValueError):
+            pscp.link('test hash', 'test refspec')
 
     @patch('pscp.pscp._run_git')
     def test_delete(self, run_git):

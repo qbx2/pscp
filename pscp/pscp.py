@@ -73,15 +73,24 @@ def create(return_head_on_nothing=True, return_format='abbrev', link=True):
     return return_value or None
 
 
-def link(h):
+def link(h, refspec=None):
     if not isinstance(h, str):
         raise TypeError('Expected str, not {}'.format(type(h)))
 
-    timestamp_ms = int(time.time() * 1000)
-    ref = 'refs/{}/{}'.format(REF_NAMESPACE, timestamp_ms)
-    _run_git('update-ref', ref, h)
+    if not isinstance(refspec, str) and refspec is not None:
+        raise TypeError('Expected str, not {}'.format(type(refspec)))
 
-    return ref
+    prefix = 'refs/{}/'.format(REF_NAMESPACE)
+
+    if refspec is None:
+        timestamp_ms = int(time.time() * 1000)
+        refspec = '{}{}'.format(prefix, timestamp_ms)
+    elif not refspec.startswith(prefix):
+        raise ValueError('Expected refspec to start with {}'.format(prefix))
+
+    _run_git('update-ref', refspec, h)
+
+    return refspec
 
 
 _link = link
