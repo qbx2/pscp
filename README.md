@@ -35,7 +35,7 @@ Besides, PSCP does make neither `git log` nor `git stash list` messy. You won't 
 
 ### How does it work?
 
-[How It Works](How_It_Works.md)
+[How PSCP Works](How_PSCP_Works.md)
 
 ### Tracking New Files
 
