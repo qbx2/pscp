@@ -14,7 +14,8 @@ class TestPSCP(TestCase):
         p.stdout = b'test stdout'
         p.stderr = b'test stderr'
 
-        self.assertEqual(str(pscp.CalledProcessError(p)),
+        self.assertEqual(
+            str(pscp.CalledProcessError(p)),
             "Command ('arg1', 'arg2') returned non-zero exit status -123.\n"
             'stdout: test stdout\n'
             'stderr: test stderr\n'.strip())
@@ -33,7 +34,8 @@ class TestPSCP(TestCase):
         output = ppscp._run_git('stash', 'create')
 
         self.assertEqual(output, 'test hash 123')
-        run.assert_called_once_with(('git', 'stash', 'create'),
+        run.assert_called_once_with(
+            ('git', 'stash', 'create'),
             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     @patch('subprocess.run')

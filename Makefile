@@ -15,4 +15,4 @@ test:
 
 pytest:
 	flake8 pscp tests.py
-	pytest tests.py
+	pytest --cov=pscp tests.py
