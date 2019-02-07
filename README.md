@@ -31,11 +31,11 @@ Besides, PSCP does make neither `git log` nor `git stash list` messy. You won't 
 
 [Getting Started](Getting_Started.md)
 
-## How does it work?
+## Frequently Asked Questions
+
+### How does it work?
 
 [How It Works](How_It_Works.md)
-
-## Frequently Asked Questions
 
 ### Tracking New Files
 
