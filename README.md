@@ -80,9 +80,12 @@ Create per-session checkpoint.
 	* `ref`: Return refspec. Raises exception when link == False.
 * `link`: See `pscp.link()` below.
 
-## pscp.link(hash)
+## pscp.link(hash, refspec=None)
 
-Create reference named `refs/pscp/{timestamp_ms}`. It could be used to avoid pruning on garbage collection.
+Create reference. `pscp.link()` could be used to avoid pruning on garbage collection.
+
+* `hash`: The hash to be referenced.
+* `refspec`: If `None`, `refs/pscp/{timestamp_ms}` is used.
 
 ## pscp.delete(refspec)
 
