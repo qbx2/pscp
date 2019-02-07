@@ -1,12 +1,24 @@
 import subprocess
 from unittest import TestCase
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 
 import pscp
 import pscp.pscp as ppscp
 
 
 class TestPSCP(TestCase):
+    def test_called_process_error(self):
+        p = MagicMock()
+        p.args = ('arg1', 'arg2')
+        p.returncode = -123
+        p.stdout = b'test stdout'
+        p.stderr = b'test stderr'
+
+        self.assertEqual(str(pscp.CalledProcessError(p)),
+            "Command ('arg1', 'arg2') returned non-zero exit status -123.\n"
+            'stdout: test stdout\n'
+            'stderr: test stderr\n'.strip())
+
     def test_run_git(self):
         output = ppscp._run_git('version')
 
@@ -246,10 +258,10 @@ class TestPSCP(TestCase):
 
     def test_fetch_invalid_raise(self):
         with self.assertRaises(TypeError):
-            pscp.push(refspec=b'refs/pscp/123')
+            pscp.fetch(refspec=b'refs/pscp/123')
 
         with self.assertRaises(TypeError):
-            pscp.push(refmap=b'refs/pscp/123')
+            pscp.fetch(refmap=b'refs/pscp/123')
 
         with self.assertRaises(TypeError):
-            pscp.push(repository=b'origin')
+            pscp.fetch(repository=b'origin')
