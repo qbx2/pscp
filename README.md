@@ -38,6 +38,11 @@ Besides, PSCP does make neither `git log` nor `git stash list` messy. You won't 
 
 [How PSCP Works](How_PSCP_Works.md)
 
+### Does PSCP just save 'all' files?
+
+No, PSCP saves git-tracked files only.
+For details, please refer to [2.2 Git Basics - Recording Changes to the Repository](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository).
+
 ### Tracking New Files
 
 Use `git add` to stage, to track new files. Untracked files will not be added to the checkpoint.
