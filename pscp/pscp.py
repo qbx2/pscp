@@ -38,7 +38,7 @@ def _run_git(*git_args):
         raise TypeError('Expected all to be str, got {}'.format(
             tuple(map(type, git_args))))
 
-    p = subprocess.run(args, capture_output=True)
+    p = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     if p.returncode:
         raise CalledProcessError(p)

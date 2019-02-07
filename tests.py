@@ -1,3 +1,4 @@
+import subprocess
 from unittest import TestCase
 from unittest.mock import patch
 
@@ -6,6 +7,11 @@ import pscp.pscp as ppscp
 
 
 class TestPSCP(TestCase):
+    def test_run_git(self):
+        output = ppscp._run_git('version')
+
+        self.assertRegex(output, r'(\d+)\.(\d+)\.(\d+)')
+
     @patch('subprocess.run')
     def test_run_git_return(self, run):
         run.return_value.stdout = b'test hash 123\n'
@@ -15,8 +21,8 @@ class TestPSCP(TestCase):
         output = ppscp._run_git('stash', 'create')
 
         self.assertEqual(output, 'test hash 123')
-        run.assert_called_once_with(
-            ('git', 'stash', 'create'), capture_output=True)
+        run.assert_called_once_with(('git', 'stash', 'create'),
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     @patch('subprocess.run')
     def test_run_git_return_invalid_characters(self, run):
