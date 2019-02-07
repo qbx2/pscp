@@ -73,7 +73,7 @@ def create(return_head_on_nothing=True, return_format='abbrev', link=True):
     return return_value or None
 
 
-def _link(h):
+def link(h):
     if not isinstance(h, str):
         raise TypeError('Expected str, not {}'.format(type(h)))
 
@@ -84,7 +84,7 @@ def _link(h):
     return ref
 
 
-link = _link
+_link = link
 
 
 def delete(refspec):
