@@ -154,6 +154,8 @@ From https://github.com/qbx2/test
 2741da39b09687a06acd71651ce26eded3458606 refs/checkpoints/1548995645
 ```
 
+## Delete local checkpoints
+
 When we have low disk space, we might want to save space by pruning pushed checkpoints.
 First, delete the reference we've created to avoid pruning.
 
