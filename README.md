@@ -28,7 +28,7 @@ Besides, PSCP does make neither `git log` nor `git stash list` messy. You won't 
 
 `pip install pscp`
 
-## Getting Started (with [tensorboardX](https://github.com/lanpa/tensorboardX))
+## Getting Started
 
 [Getting Started](Getting_Started.md)
 
