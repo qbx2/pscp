@@ -11,7 +11,7 @@ with open(path.join(this_directory, 'README.md')) as f:
 
 setup(
     name='pscp',
-    version='0.0.3',
+    version='0.0.4',
     description='Per-session checkpoint using git-stash-create',
     long_description=long_description,
     long_description_content_type='text/markdown',
