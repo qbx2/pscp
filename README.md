@@ -35,9 +35,35 @@ Besides, PSCP does make neither `git log` nor `git stash list` messy. You won't 
 
 [How It Works](How_It_Works.md)
 
-## Tracking New Files
+## Frequently Asked Questions
+
+### Tracking New Files
 
 Use `git add` to stage, to track new files. Untracked files will not be added to the checkpoint.
+
+### Saving environment variables or argparse results?
+
+You're supposed to write to any file and track them (using `git add`).
+Using json built-in library, it can be done easily.
+
+```python
+import json
+```
+
+To save environment variables,
+
+```python
+import os
+json.dump(fp, dict(os.environ), indent=4)
+```
+
+To save argparse namespace,
+
+```python
+json.dump(fp, vars(args), indent=4)
+```
+
+Any other data can be saved in same way.
 
 ## Command Line Tool (TODO)
 
