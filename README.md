@@ -43,7 +43,7 @@ Use `git add` to stage, to track new files. Untracked files will not be added to
 
 `python -m pscp`
 
-## `pscp.create(return_head_on_nothing=True, return_format='abbrev', link=True)`
+## pscp.create(return\_head\_on\_nothing=True, return\_format='abbrev', link=True)
 
 Create per-session checkpoint.
 
@@ -54,27 +54,27 @@ Create per-session checkpoint.
 	* `ref`: Return refspec. Raises exception when link == False.
 * `link`: See `pscp.link()` below.
 
-## `pscp.link(hash)`
+## pscp.link(hash)
 
 Create reference named `refs/pscp/{timestamp_ms}`. It could be used to avoid pruning on garbage collection.
 
-## `pscp.delete(refspec)`
+## pscp.delete(refspec)
 
 Delete pscp reference. Call `pscp.gc()` if you want.
 
 * `refspec`: Target refspec to be deleted. `timestamp_ms` is also allowed.
 
-## `pscp.gc(prune='now')`
+## pscp.gc(prune='now')
 
 Run `git gc --prune=<prune>`.
 
-## `pscp.push(refspec=None, repository='origin')`
+## pscp.push(refspec=None, repository='origin')
 
 Push checkpoint to the remote repository.
 
 * `refspec`: If `None`, all checkpoints are pushed.
 
-## `pscp.fetch(refspec=None, refmap=None, repository='origin')`
+## pscp.fetch(refspec=None, refmap=None, repository='origin')
 
 * `refspec`: If `None`, all checkpoints are fetched.
 * `refmap`: If `None`, `refs/pscp/*:refs/pscp/*` is used.
