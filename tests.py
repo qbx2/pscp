@@ -1,6 +1,6 @@
 import subprocess
 from unittest import TestCase
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, call, ANY
 
 import pscp
 import pscp.pscp as ppscp
@@ -77,7 +77,9 @@ class TestPSCP(TestCase):
         output = pscp.create(return_format='long', link=False)
 
         self.assertEqual(output, 'test hash 123')
-        run_git.assert_called_once_with('stash', 'create')
+        self.assertEqual(
+            run_git.mock_calls,
+            [call('stash', 'create'), call('update-ref', 'PSCP_HEAD', ANY)])
 
     def test_create_invalid_return_format_raise(self):
         with self.assertRaises(ValueError):

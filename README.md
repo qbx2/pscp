@@ -75,15 +75,34 @@ Any other data can be saved in same way.
 
 `python -m pscp`
 
+### Release Notes
+
+#### 0.0.4 (Work In Progress)
+
+- Add `PSCP_HEAD` to refer the latest pscp checkpoint.
+  - It could be used to diff old and current pscp: `git diff {hash}..PSCP_HEAD`
+
+#### 0.0.3
+
+Implement link(..., refspec)
+
+#### 0.0.2
+
+Fix python 3.5, 3.6 incompatibility.
+
+#### 0.0.1
+
+Initial release.
+
 ## pscp.create(return\_head\_on\_nothing=True, return\_format='abbrev', link=True)
 
 Create per-session checkpoint.
 
 * `return_head_on_nothing`: If True, return hash of `HEAD` when there are nothing changed compared to `HEAD`, otherwise, return `None`.
 * `return_format`
-	* `abbrev`, `short`: Return abbreviated hash.
-	* `long`: Return just unabbreviated hash.
-	* `ref`: Return refspec. Raises exception when link == False.
+  * `abbrev`, `short`: Return abbreviated hash.
+  * `long`: Return just unabbreviated hash.
+  * `ref`: Return refspec. Raises exception when link == False.
 * `link`: See `pscp.link()` below.
 
 ## pscp.link(hash, refspec=None)

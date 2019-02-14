@@ -46,6 +46,10 @@ def _run_git(*git_args):
     return p.stdout.decode(errors='replace').strip()
 
 
+def _update_pscp_head(h):
+    _run_git('update-ref', 'PSCP_HEAD', h)
+
+
 def create(return_head_on_nothing=True, return_format='abbrev', link=True):
     if return_format not in ('abbrev', 'short', 'long', 'ref'):
         raise ValueError('Unknown return_format: {}'.format(return_format))
@@ -57,6 +61,9 @@ def create(return_head_on_nothing=True, return_format='abbrev', link=True):
 
     if not h and return_head_on_nothing:
         h = _run_git('rev-parse', 'HEAD')
+
+    if h:
+        _update_pscp_head(h)
 
     if h and link:
         ref = _link(h)
